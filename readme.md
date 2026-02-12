@@ -37,7 +37,8 @@ docker run -p 5001:5001 \
 
   ## ✅ Proof of Success
 ### Jenkins Pipeline Stages
-![Jenkins Stages](Jenkins_Stage_View_Success.png)
+![Jenkins Stages]<img width="1581" height="866" alt="Jenkins_Stage_View_Success" src="https://github.com/user-attachments/assets/46098c9f-08af-4602-ba3e-ed2ae7949a1c" />
 
 ### Docker Hub Verification
-![Docker Hub](DockerHub_Image_Push_Verified.png)
+![Docker Hub]<img width="1013" height="653" alt="DockerHub_Image_Push_Verified" src="https://github.com/user-attachments/assets/8b009fec-e823-4997-97ba-c180c3162b4e" />
+
