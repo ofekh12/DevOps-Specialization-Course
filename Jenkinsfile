@@ -17,7 +17,7 @@ pipeline {
             steps {
                 echo '--- Starting Code Quality Check (Flake8) ---'
                 sh "pip install flake8"
-                sh "flake8 aws/PYTHONCODE.py --ignore=E,W,F401""
+                sh "flake8 aws/PYTHONCODE.py --ignore=E,W,F401"
                 echo '--- Linting Passed Successfully! ---'
             }
         }
