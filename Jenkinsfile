@@ -26,7 +26,7 @@ pipeline {
             steps {
                 echo '--- Starting Security Scan (Bandit) ---'
                 sh "pip install bandit"
-                sh "bandit -r aws/PYTHONCODE.py"
+                sh "bandit -r aws/PYTHONCODE.py -ll"
                 echo '--- No Security Vulnerabilities Found! ---'
             }
         }
