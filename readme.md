@@ -37,7 +37,7 @@ docker run -p 5001:5001 \
 
   ## ✅ Proof of Success
 ### Jenkins Pipeline Stages
-![Jenkins Stages](Jenkins_Pipeline_Success_Stages.png)
+![Jenkins Stages](Jenkins_Stage_View_Success.png)
 
 ### Docker Hub Verification
 ![Docker Hub](DockerHub_Image_Push_Verified.png)
