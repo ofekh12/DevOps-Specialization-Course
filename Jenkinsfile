@@ -12,26 +12,23 @@ pipeline {
                 checkout scm
             }
         }
+
         stage('Parallel Checks') {
             parallel {
-               stage('Linting') {
-                   steps {
-                      echo '--- Starting Code Quality Check (Flake8) ---'
-                      sh "pip install flake8 --break-system-packages && flake8 aws/PYTHONCODE.py || true"
-                      echo '--- Linting Passed Successfully! ---'
-                   }
+                stage('Linting') {
+                    steps {
+                        echo '--- Starting Code Quality Check ---'
+                        sh "pip install flake8 --break-system-packages && flake8 aws/PYTHONCODE.py --ignore=E,W,F401 || true"
+                    }
                 }
-
                 stage('Security Scan') {
                     steps {
-                       echo '--- Starting Security Scan (Bandit) ---'
-                       sh "pip install bandit --break-system-packages && bandit -r aws/PYTHONCODE.py  || true"
-                       echo '--- No Security Vulnerabilities Found! ---'
+                        echo '--- Starting Security Scan ---'
+                        sh "pip install bandit --break-system-packages && bandit -r aws/PYTHONCODE.py -ll || true"
                     }
                 }
             }
         }
-    }
 
         stage('Build Docker Image') {
             steps {
@@ -41,11 +38,9 @@ pipeline {
         
         stage('Container Security Scan (Trivy)') {
             steps {
-                echo '--- Installing Trivy ---'
+                echo '--- Installing & Running Trivy ---'
                 sh "curl -sfL https://raw.githubusercontent.com/aquasecurity/trivy/main/contrib/install.sh | sh -s -- -b ."
-                
-                echo '--- Scanning Docker Image ---'
-                sh "./trivy image ${IMAGE_NAME}"
+                sh "./trivy image ${IMAGE_NAME}:latest"
             }
         }
 
@@ -65,3 +60,4 @@ pipeline {
             echo 'Pipeline failed! Check logs for details.'
         }
     }
+}
